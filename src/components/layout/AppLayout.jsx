@@ -1,39 +1,41 @@
-import React, { useState } from 'react';
-import { MenuFoldOutlined, MenuUnfoldOutlined, } from '@ant-design/icons';
-import { Layout, Menu, Button, } from 'antd';
-import { Route, Routes, useLocation } from 'react-router-dom';
-import { routes } from '../../utils/routes';
-import { menuItems } from '../../constants/menuItems';
+import React, { useState } from "react";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { Layout, Menu, Button } from "antd";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { routes } from "../../utils/routes";
+import { menuItems } from "../../constants/menuItems";
 const { Header, Sider, Content } = Layout;
 const AppLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const locatin = useLocation()
+  const locatin = useLocation();
 
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="demo-logo-vertical" />
+        <div className="demo-logo-vertical"  > 
+        GENIA
+        </div>
         <Menu
           theme="light"
-          mode="inline" 
+          mode="inline"
           defaultSelectedKeys={[locatin.pathname]}
           items={menuItems}
         />
       </Sider>
       <Layout>
-        <Header className='header'>
+        <Header className="header">
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
-            className='collapse-button'
+            className="collapse-button"
           />
         </Header>
-        <Content className='main-content'>
+        <Content className="main-content">
           <Routes>
-            {
-              routes.map(item => <Route path={item.path} key={item.id} element={item.component} />)
-            }
+            {routes.map((item) => (
+              <Route path={item.path} key={item.id} element={item.component} />
+            ))}
           </Routes>
         </Content>
       </Layout>
